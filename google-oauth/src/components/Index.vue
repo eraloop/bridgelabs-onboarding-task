@@ -1,7 +1,11 @@
 <template>
-    <dic class="container">
-        <h1>You finally fixed the problem</h1>
-    </dic>
+    <div class="container">
+        <h2> Welcome to out OAuth Login Screen </h2>
+        <div  class="g-signin2" data-onsuccess="onSignIn"></div>
+       <!-- <div v-else>
+           <button>Logout</button>
+       </div> -->
+    </div>
 </template>
 <script>
    export default{
@@ -10,7 +14,7 @@
        },
        data(){
            return{
-               
+               profile: ''
               }
        },
        computed:{
@@ -19,15 +23,37 @@
        methods:{
            
        },
-       mounted: function(){
-            
+       mounted: {
+            onSignIn(googleUser) {
+                this.profile = googleUser.getBasicProfile();
+                console.log('ID: ' + this.profile.getId()); // Do not send to your backend! Use an ID token instead.
+                console.log('Name: ' + this.profile.getName());
+                console.log('Image URL: ' + this.profile.getImageUrl());
+                console.log('Email: ' + this.profile.getEmail()); // This is null if the 'email' scope is not present.
+            },
+
+                // signOut() {
+                //     var auth2 = gapi.auth2.getAuthInstance();
+                //     auth2.signOut().then(function () {
+                //     console.log('User signed out.');
+                //     });
+                // }
        }
     }
 </script>
 <style scoped> 
-   *{
-        padding: 0;
-        margin: 0;
-        box-sizing:border-box;
+
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        text-align: center;
+        margin: auto;
+        height: 100vh;
+        width: 100%
     }
+
+
 </style>
