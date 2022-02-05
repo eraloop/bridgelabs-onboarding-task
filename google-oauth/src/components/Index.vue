@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <h2> Welcome to out OAuth Login Screen </h2>
-        <div  class="g-signin2" data-onsuccess="onSignIn"></div>
+        <h2> Welcome to our OAuth Login Screen </h2>
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
        <!-- <div v-else>
            <button>Logout</button>
        </div> -->
