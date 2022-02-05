@@ -44,7 +44,7 @@
          Choose a file
          </button>
 
-         <input type="file" @change="pickFile" hidden>
+         <input type="file" @change="pickFile">
 
         <button
          @click="uploadFile()"
@@ -73,22 +73,34 @@ export default {
   },
 
   methods:{
+    
+    processFile(){
+      const reader = new FileReader()
+      let url = reader.readAsArrayBuffer(this.file)
 
-    selectFile(){
-      this.input.click()
+      this.imgSrc = url
+      console.log(imgSrc)
     },
 
     pickFile(){
-      console.log("clicked")
-      const reader = new FileReader();
-      reader.onload = function(){
-        console.log("reached file reader")
-        const result = reader.result;
-        this.imgSrc = result;
-      }
+      // console.log("clicked")
+      // const reader = new FileReader();
+      
+      // // reader.onload = function(){
+      // //   console.log("reached file reader")
+      // //   const result = reader.result;
+      // //   this.imgSrc = result;
+      // // }
 
-      // this.file = this.files[0],
-      // reader.readAsDataURL(this.file);
+      // // this.file = this.files[0],
+      // // reader.readAsDataURL(this.file);
+
+
+      this.file = document.getElementById('input').files[0];
+
+      if (this.file) {
+        processFile();
+      }
     },
 
     uploadFile(){
