@@ -1,41 +1,31 @@
 <template>
-        <!-- <div class="container">
-         <div class="wrapper">
-            <div class="image">
-               <img src="" alt="No image found" >
-            </div>
-            <div class="content">
-               <div class="icon">
-                  <img src="../static/img/cloud-arrow-up.svg" alt="" >
-               </div>
-               <div class="text">
-                  No file chosen, yet!
-               </div>
-            </div>
-            <div id="cancel-btn">
-               <i class="fas fa-times"></i>
-            </div>
-            <div class="file-name">
-               File name here
-            </div>
-         </div>
-         <button v:onclick="defaultBtnActive" id="custom-btn">Choose a file</button>
-         <input id="default-btn" type="file" hidden>
-      </div>
-     -->
 
      <div class="container">
        <div class="content">
-          <div v-if="true" class="uploaded_content">
-              <img :src="{imgSrc}" alt="">
+          <div v-if="this.imgSrc" class="uploaded_content" id="image-section">
+            <div v-if="validImage">
+              <img src="../static/img/user-solid.svg" height="100px" width="100px" alt="">
+              <h4>Image selected</h4>
+              <p>Please upload to local json database</p>
+                <!-- <img :src="{imgSrc}" alt=""> -->
+            </div>
+
+            <div v-else >
+              <img src="../static/img/file-earmark-check.svg" height="100px" width="100px" alt="">
+              <h4>File selected</h4>
+               <p>Please upload to local json database</p>
+            </div>
           </div>
-          <div else class="preview_content">
+          <div v-else class="preview_content">
             <img src="../static/img/cloud-arrow-up.svg" height="100px" width="100px" alt="">
             <h4>No file selected</h4>
           </div>
        </div>
 
        <div class="btn_section">
+
+         <input ref="fileInput" type="file" @change="pickFile" class="fileInput">
+
          <button
          @click="selectFile()"
          class="btn btn-primary block"
@@ -44,7 +34,7 @@
          Choose a file
          </button>
 
-         <input type="file" @change="pickFile" hidden>
+         
 
         <button
          @click="uploadFile()"
@@ -59,40 +49,73 @@
 </template>
 
 <script>
+import {axios} from "axios";
+// import {$refs} from "vue";
+
+
 export default {
   name: 'Home',
 
   data(){
     return{
       // regExp : `/[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/`,
-      notselected : true,
+      notselected : false,
       imgSrc: '',
       files:[],
-      file: ''
+      file: '',
+      validImage : ""
     }
   },
 
   methods:{
 
-    selectFile(){
-      this.input.click()
-    },
+    pickFile(event){
 
-    pickFile(){
-      console.log("clicked")
-      const reader = new FileReader();
-      reader.onload = function(){
-        console.log("reached file reader")
-        const result = reader.result;
-        this.imgSrc = result;
+      let imageTypes = ["image/jpeg", "image/jpg", "image/png"]; 
+
+      this.imgSrc = event.target.files[0];
+      const imagetype = this.imgSrc.type
+
+      if(imageTypes.includes(imagetype)){
+        this.validImage = true
+      }else{
+        this.validImage = false
       }
-
-      // this.file = this.files[0],
-      // reader.readAsDataURL(this.file);
+      console.log(this.imgSrc)
     },
 
     uploadFile(){
-      console.log("clicked")
+      let result;
+
+      if(this.validImage){
+        result = {
+          "name": this.imgSrc.name,
+          "type": this.imgSrc.type
+        }
+      }else{
+        result = {
+          "name": this.imgSrc.name,
+        }
+      }
+
+      try{
+        const res = axios.post(" http://localhost:3000/posts", result )
+        console.log(res)
+      }catch(e){
+        console.log(e)
+      }
+
+    },
+
+
+    getUploadedFile(){
+      try{
+        const res = axios.get(" http://localhost:3000/posts")
+        console.log(res)
+      }catch(e){
+        console.log(e)
+      }
+
     }
 
     
@@ -144,12 +167,15 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 2em auto;
+  margin: 1em auto;
 
 }
 
 .btn_section{
-  margin: 2em auto;
+  margin: 1em auto;
+  display: flex;
+  flex-direction: column;
+  -ms-flex-order: reverse;
 }
 
 .btn_section .btn {
@@ -165,5 +191,22 @@ a {
   font-size: 1em;
   box-shadow: #9baee7 0px 8px 24px;
   cursor: pointer;
+}
+
+input.fileInput{
+  border: none;
+  outline: none;
+  color: #00134D;
+  text-decoration-style: underline;
+  font-size: 1.2em;
+  font-weight: 500;
+  margin: 20px 0;
+}
+
+#file-upload-button{
+  border: 2px solid #00134D;
+  border-style: dashed;
+  border-radius: 10px round;
+  display: none;
 }
 </style>
