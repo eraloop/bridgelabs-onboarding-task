@@ -2,9 +2,6 @@
     <div class="container">
         <h2> Welcome to our OAuth Login Screen </h2>
         <div class="g-signin2" data-onsuccess="onSignIn"></div>
-       <!-- <div v-else>
-           <button>Logout</button>
-       </div> -->
     </div>
 </template>
 <script>
@@ -13,15 +10,16 @@
             
        },
        data(){
-           return{
+            return{
                profile: {}
-              }
+            }
        },
        computed:{
            
         },
        methods:{
             onSignIn(googleUser) {
+                console.log(googleUser)
                 this.profile = googleUser.getBasicProfile();
                 console.log(this.profile)
                 // console.log('ID: ' + this.profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -41,6 +39,7 @@
                 // }
        }
     }
+
 </script>
 <style scoped> 
 
