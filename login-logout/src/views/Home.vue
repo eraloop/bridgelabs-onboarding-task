@@ -1,15 +1,13 @@
 <template>
     <div class="container">
-        <h1>This is the form component</h1>
+        <Form/>
     </div>
 </template>
 <script>
+import Form as "@components/Form.vue";
    export default{
        components:{
-            
-       },
-       props:{
-           
+            Form
        },
        data(){
            return{
