@@ -2,21 +2,19 @@
 
      <div class="container">
        <div class="content">
-          <div v-if="this.imgSrc" class="uploaded_content" id="image-section">
-            <div v-if="validImage" 
-              :style="{ backgroundImage: `url(${image})` }"
+          <div v-if="this.validImage" class="uploaded_content" id="image-section">
+            <div  
+              :style="{ backgroundImage: `url(${pickedfile})` , height:`200`, width:`200`  }"
             >
-              <!-- <img src="../static/img/user-solid.svg" height="100px" width="100px" alt="">
-              <h4>Image selected</h4>
-              <p>Please upload to local json database</p> -->
-                <img :src="image" alt="">
+                <!-- empty dev -->
             </div>
 
-            <div v-else >
+            <div  >
               <img src="../static/img/file-earmark-check.svg" height="100px" width="100px" alt="">
               <h4>File selected</h4>
                <p>Please upload to local json database</p>
             </div>
+
           </div>
           <div v-else class="preview_content">
             <img src="../static/img/cloud-arrow-up.svg" height="100px" width="100px" alt="">
@@ -63,7 +61,8 @@ export default {
       files:[],
       file: '',
       validImage : "",
-      image:""
+      pickedfile:"",
+      type: ""
     }
   },
 
@@ -78,14 +77,14 @@ export default {
       },
       createImage(file) {
           console.log("called")
-          // let image = new Image();
           const reader = new FileReader();
-          // let vm = this
           reader.onload = (e) => {
-              this.image = e.target.result;
+              this.pickedfile =  e.target.result;
+              this.validImage = true
           };
           reader.readAsDataURL(file);
       },
+
 
     uploadFile(){
       let result;
