@@ -3,11 +3,13 @@
      <div class="container">
        <div class="content">
           <div v-if="this.imgSrc" class="uploaded_content" id="image-section">
-            <div v-if="validImage">
-              <img src="../static/img/user-solid.svg" height="100px" width="100px" alt="">
+            <div v-if="validImage" 
+              :style="{ backgroundImage: `url(${image})` }"
+            >
+              <!-- <img src="../static/img/user-solid.svg" height="100px" width="100px" alt="">
               <h4>Image selected</h4>
-              <p>Please upload to local json database</p>
-                <!-- <img :src="{imgSrc}" alt=""> -->
+              <p>Please upload to local json database</p> -->
+                <img :src="image" alt="">
             </div>
 
             <div v-else >
@@ -24,7 +26,7 @@
 
        <div class="btn_section">
 
-         <input ref="fileInput" type="file" @change="pickFile" class="fileInput">
+         <input type="file" @change="onPicked" class="fileInput">
 
          <button
          @click="selectFile()"
@@ -50,39 +52,40 @@
 
 <script>
 import {axios} from "axios";
-// import {$refs} from "vue";
-
 
 export default {
   name: 'Home',
 
   data(){
     return{
-      // regExp : `/[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/`,
       notselected : false,
       imgSrc: '',
       files:[],
       file: '',
-      validImage : ""
+      validImage : "",
+      image:""
     }
   },
 
   methods:{
 
-    pickFile(event){
-
-      let imageTypes = ["image/jpeg", "image/jpg", "image/png"]; 
-
-      this.imgSrc = event.target.files[0];
-      const imagetype = this.imgSrc.type
-
-      if(imageTypes.includes(imagetype)){
-        this.validImage = true
-      }else{
-        this.validImage = false
-      }
-      console.log(this.imgSrc)
-    },
+      onPicked(e){
+          
+          const files = e.target.files || e.dataTransfer.files;
+          if (!files.length)
+              return;
+          this.createImage(files[0]);
+      },
+      createImage(file) {
+          console.log("called")
+          // let image = new Image();
+          const reader = new FileReader();
+          // let vm = this
+          reader.onload = (e) => {
+              this.image = e.target.result;
+          };
+          reader.readAsDataURL(file);
+      },
 
     uploadFile(){
       let result;
