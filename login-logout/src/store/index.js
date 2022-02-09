@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { RegisterService } from './services/register'
-import { LoginService } from './services/login'
-import { LogoutService } from './services/logout'
+import { RegisterService } from '../services/register'
+import { LoginService } from '../services/login'
+import { LogoutService } from '../services/logout'
 
 Vue.use(Vuex)
 
@@ -16,7 +16,8 @@ export default new Vuex.Store({
     async login({ commit }, payload) {
       try {
         const token = await LoginService.login(payload.username, payload.password)
-        router.push(`/${i18n.locale}/profile`)
+        commit.push("true")
+        console.log(token)
         return payload
       } catch (e) {
         console.log(e)
@@ -35,7 +36,7 @@ export default new Vuex.Store({
       }
     },
 
-    logout({ commit }) {
+    logout() {
       LogoutService.logout()
     },
   },
