@@ -8,8 +8,20 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    view_name: "",
+    registrationSuccess:{
+
+    }
   },
   mutations: {
+    // registrationSuccess(state, paylaod){
+      
+    // }
+  },
+  getters:{
+    get_view_name: (state)=> {
+      return state.view_name
+    }
   },
   actions: {
 
@@ -25,10 +37,11 @@ export default new Vuex.Store({
       }
     },
 
-    async register({ commit }, user) {
+    async register(user) {
       try {
         const token = await RegisterService.register(user)
-        commit('registrationSuccess', (token, user.username))
+        // commit('registrationSuccess', (token, user.username))
+        console.log(token)
         return true
       } catch (e) {
         console.log(e)
