@@ -17,3 +17,5 @@ const LogoutService = {
     }
   }
 }
+
+export default LogoutService

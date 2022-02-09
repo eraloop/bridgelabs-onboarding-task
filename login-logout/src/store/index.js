@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { RegisterService } from '../services/register'
-import { LoginService } from '../services/login'
-import { LogoutService } from '../services/logout'
+import  RegisterService  from '../services/register'
+import  LoginService  from '../services/login'
+import  LogoutService  from '../services/logout'
 
 Vue.use(Vuex)
 
