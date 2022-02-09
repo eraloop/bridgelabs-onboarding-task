@@ -1,16 +1,30 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { RegisterService } from '../services/register'
-import { LoginService } from '../services/login'
-import { LogoutService } from '../services/logout'
+import  RegisterService  from '../services/register'
+import  LoginService  from '../services/login'
+import  LogoutService  from '../services/logout'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    view_name: "",
+    registrationSuccess:{
+
+    }
   },
   mutations: {
+    update_name (state, payload){
+      state.view_name = payload
+    }
   },
+
+  getters:{
+    get_view_name: (state)=> {
+      return state.view_name
+    }
+  },
+
   actions: {
 
     async login({ commit }, payload) {
@@ -25,13 +39,14 @@ export default new Vuex.Store({
       }
     },
 
-    async register({ commit }, user) {
+    async register(user) {
       try {
-        const token = await RegisterService.register(user)
-        commit('registrationSuccess', (token, user.username))
+        const token = await RegisterService.registerUser(user)
+        // commit('registrationSuccess', (token, user.username))
+        console.log(token)
         return true
       } catch (e) {
-        console.log(e)
+        console.log("console from register store", e)
         return false
       }
     },
