@@ -14,15 +14,17 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    // registrationSuccess(state, paylaod){
-      
-    // }
+    update_name (state, payload){
+      state.view_name = payload
+    }
   },
+
   getters:{
     get_view_name: (state)=> {
       return state.view_name
     }
   },
+
   actions: {
 
     async login({ commit }, payload) {
@@ -39,12 +41,12 @@ export default new Vuex.Store({
 
     async register(user) {
       try {
-        const token = await RegisterService.register(user)
+        const token = await RegisterService.registerUser(user)
         // commit('registrationSuccess', (token, user.username))
         console.log(token)
         return true
       } catch (e) {
-        console.log(e)
+        console.log("console from register store", e)
         return false
       }
     },

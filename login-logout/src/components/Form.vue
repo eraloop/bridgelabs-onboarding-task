@@ -1,8 +1,14 @@
 <template>
-    <div>
-        <div class="p-4 m-3 justify-content-center align-items-center ">
-            <button class="mr-4  pr-4" @click.prevent="Login">Login</button>
-            <button class="ml-4 pl-4" @click.prevent="Register">Register</button>
+    <div class="form-section">
+        <div class=" navigation container p-4 m-3 justify-content-center align-items-center ">
+           <div class="row">
+               <div class="col-lg-6 justify-content-around ">
+                    <button class=" btn-nav" @click.prevent="Login">Login</button>
+               </div>
+               <div class="col-lg-6">
+                   <button class=" btn-nav" @click.prevent="Register">Register</button>
+               </div>
+           </div>
         </div>
 
         <form action="" >
@@ -30,31 +36,33 @@
                 <input  v-model="FormData.phone" class="input-box shadow-lg bg-white rounded" type="phone" name="phone" >
             </div>
             
-            <div class="photo column d-flex-column justify-content-center m-auto p-auto">
+            <div class="photo column d-flex-column  justify-content-center m-auto p-auto">
                 <label for="photo">Profile Photo</label>
                 <input @change="onPicked" class="" type="file" name="photo" >
             </div>
 
-            <div   class="password d-flex justify-content-between  m-auto p-auto">
-               <div class="d-flex-column justify-content-center">
-                    <label for="password">Password</label>
-                    <input v-model="FormData.password" class="input-box shadow-lg bg-white rounded" type="text" name="password" >
-               </div>
-               <div class="d-flex-column justify-content-center m-auto p-auto">
-                    <label for="confirm-password">Confirm Password</label>
-                    <input  v-model="FormData.cnfpassword" class="input-box shadow-lg bg-white rounded" type="text" name="confirm-password" >
-               </div>
+            <div class="password container d-flex justify-content-between  m-auto p-auto">
+                <div class="row">
+                    <div class=" col-lg-6 d-flex-column justify-content-center">
+                        <label for="password">Password</label>
+                        <input v-model="FormData.password" class="input-box shadow-lg bg-white rounded" type="text" name="password" >
+                    </div>
+                    <div class="col-lg-6 d-flex-column justify-content-center m-auto p-auto">
+                            <label for="confirm-password">Confirm Password</label>
+                            <input  v-model="FormData.cnfpassword" class="input-box shadow-lg bg-white rounded" type="text" name="confirm-password" >
+                    </div>
+                </div>
             </div>
 
-           <div class="button_section">
-                <div v-if="login" class="d-inline-block justify-content-center m-auto p-auto">
-                    <button @click.prevent="RegisterUser">Register</button>
+           <div class="button_section buttons">
+                <div v-if="login" class=" d-inline-block justify-content-center m-auto p-auto">
+                    <button class="btn " @click.prevent="RegisterUser" >Register</button>
                 </div>
                 <div v-else class="d-inline-block justify-content-center m-auto p-auto">
-                    <button @click.prevent="LoginUser">Login</button>
+                    <button class="btn d-block" @click.prevent="LoginUser">Login</button>
                 </div>
-            
            </div>
+
         </form>
     </div>
 </template>
@@ -69,9 +77,8 @@
 
        data(){
            return{
-                login: true,
-                register: true,
-                view_name: "" ,
+                login: Boolean,
+                register: Boolean,
                 image: "",
                 FormData: {
                     email: "",
@@ -110,13 +117,13 @@
             Login(){
                this.login = true
                this.register = false
-               this.view_name = "Login"
+               this.$store.commit("update_name", "Login")
             },
 
             Register(){
                this.login = false
                this.register = true
-               this.view_name = "Register"
+               this.$store.commit("update_name", "Register")
             },
 
             RegisterUser(){
@@ -128,9 +135,8 @@
                     password: this.FormData.password,
                     avatar: this.image
                 }
-                console.log(registerData)
                 // this dispatches an action to the vue store to run the register function with the payload
-                // this.$store.dispatch("register", registerData)
+                this.$store.dispatch("register", registerData)
             },
 
              LoginUser(){
@@ -149,8 +155,8 @@
        }
     }
 </script>
-<style scoped> 
 
+<style scoped> 
    *{
         padding: 0;
         margin: 0;
@@ -160,8 +166,8 @@
         display: flex;
         flex-direction: column;
     }
-    .name,.phone,.email,.photo,.password{
-        padding: 10px 0;
+    .name,.phone,.email,.photo,.password, .buttons{
+        padding: 7px 0;
     }
 
     .input-box{
@@ -169,6 +175,35 @@
         border: none;
         border-radius: 10px;
         outline: none;
+    }
+
+    .form-section{
+        max-width: 410px;
+    }
+    .btn{
+        margin: 5px 0;
+        min-width: 410px;
+        padding: 10px;
+        border: none;
+        border-radius: 10px;
+        color: #fff;
+        background: #2c3e50;
+    }
+    .navigation{
+        width: 400px;
+    }
+    .btn-nav{
+        padding: 10px 15px;
+        border: none;
+        border-radius: 10px; 
+        outline: none;
+        font-weight: bold;
+
+    }
+    .btn-nav:hover{
+        transition: .5s ease;
+        background: #496b8d;
+        color: white;
     }
 
 </style>

@@ -4,7 +4,7 @@ const LoginService = {
   loginUser: async function (data) {
     const requestData = {
       method: 'POST',
-      url: 'api/order/create/',
+      url: 'https://simplor.herokuapp.com/api/user/login',
       data: data
     }
 

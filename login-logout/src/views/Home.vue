@@ -5,26 +5,29 @@
                 <div class="row">
                     <div class="col-lg-5">
                         <div class="info-section d-flex-column p-5 m-2 justify-content-center align-items-center">
-                        <h4 class="pt-4 pb-4 mb-3">{{viewName}}</h4>
-                        <p >
+                        
+                        <h4 class="pt-4 pb-4 mt-5"> {{ viewName }} </h4>
+
+                        <p class="pt-3">
                             Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                             Maiores nam aspernatur tempore placeat facilis quis tempora expedita 
                             asperiores quo quibusdam sunt incidunt voluptas vitae, nostrum
                             unde consequatur! Obcaecati, quos quidem?
                         </p>
-                        <p >
+                        <p class="pb-2">
                             Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                             Maiores nam aspernatur tempore placeat facilis quis tempora expedita 
                         </p>
+                    
         
-                        <section class="button-section d-flex  pt-3 mt-3 " >
+                        <section class="button-section d-flex pt-2 mt-3">
                             <button class="btn rounded p-2 pr-4 pl-4">Explore</button>
-                            <button class="p-2 btn-link">Learn more ...</button>
+                            <button class="btn-link ml-4">Learn more ...</button>
                         </section>
 
                     </div>
                     </div>
-                   <div class=" form-region col-lg-7">
+                   <div class="form-region col-lg-7 ">
                         <div class="form-sectio p-5 m-2 justify-content-center align-items-center">
                             <FormView/>
                         </div>
@@ -49,7 +52,7 @@ import FormView from "../components/FormView.vue";
        },
        computed:{
           viewName(){
-              return this.$store.getters.get_view_name
+            return this.$store.getters.get_view_name
           }
         },
        methods:{
