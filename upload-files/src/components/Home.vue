@@ -1,22 +1,24 @@
 <template>
 
      <div class="container">
-       <div class="content">
+       <div class="content" 
+        :style="{ backgroundImage: `url(${pickedfile})`}"
+        >
           <div v-if="this.validImage" class="uploaded_content" id="image-section">
-            <div  
-              :style="{ backgroundImage: `url(${pickedfile})` , height:`200`, width:`200`  }"
+            <div  v-if="this.validImage" 
+              :style="{ backgroundImage: `url(${pickedfile})` }"
             >
                 <!-- empty dev -->
             </div>
 
-            <div  >
+            <div v-else >
               <img src="../static/img/file-earmark-check.svg" height="100px" width="100px" alt="">
               <h4>File selected</h4>
                <p>Please upload to local json database</p>
             </div>
 
           </div>
-          <div v-else class="preview_content">
+          <div v-if="!pickedfile" class="preview_content">
             <img src="../static/img/cloud-arrow-up.svg" height="100px" width="100px" alt="">
             <h4>No file selected</h4>
           </div>
@@ -26,23 +28,12 @@
 
          <input type="file" @change="onPicked" class="fileInput">
 
-         <button
-         @click="selectFile()"
-         class="btn btn-primary block"
-         v-if="notselected"
-         >
-         Choose a file
-         </button>
-
-         
-
         <button
-         @click="uploadFile()"
-         class="btn btn-primary block"
-         v-if="!notselected"
-         >
-         Upload file
-         </button>
+          @click.prevent="getUploadedFile()"
+          class="btn btn-primary block"
+          >
+            Upload file
+        </button>
          
        </div>
      </div>
@@ -56,8 +47,6 @@ export default {
 
   data(){
     return{
-      notselected : false,
-      imgSrc: '',
       files:[],
       file: '',
       validImage : "",
@@ -69,42 +58,30 @@ export default {
   methods:{
 
       onPicked(e){
-          
           const files = e.target.files || e.dataTransfer.files;
           if (!files.length)
               return;
           this.createImage(files[0]);
       },
       createImage(file) {
-          console.log("called")
           const reader = new FileReader();
           reader.onload = (e) => {
               this.pickedfile =  e.target.result;
-              this.validImage = true
           };
           reader.readAsDataURL(file);
       },
 
 
     uploadFile(){
-      let result;
-
-      if(this.validImage){
-        result = {
-          "name": this.imgSrc.name,
-          "type": this.imgSrc.type
-        }
-      }else{
-        result = {
-          "name": this.imgSrc.name,
-        }
+      let result = {
+        "name": "Image",
+        "src": this.pickedfile
       }
-
       try{
         const res = axios.post(" http://localhost:3000/posts", result )
         console.log(res)
       }catch(e){
-        console.log(e)
+        console.log("Error from posting to local db",e)
       }
 
     },
@@ -166,6 +143,9 @@ a {
   height: 300px;
   width: 350px;
   background: #fff;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
