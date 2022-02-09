@@ -1,13 +1,14 @@
 <template>
 
      <div class="container">
-       <div class="content">
-          <div v-if="this.imgSrc" class="uploaded_content" id="image-section">
-            <div v-if="validImage">
-              <img src="../static/img/user-solid.svg" height="100px" width="100px" alt="">
-              <h4>Image selected</h4>
-              <p>Please upload to local json database</p>
-                <!-- <img :src="{imgSrc}" alt=""> -->
+       <div class="content" 
+        :style="{ backgroundImage: `url(${pickedfile})`}"
+        >
+          <div v-if="this.validImage" class="uploaded_content" id="image-section">
+            <div  v-if="this.validImage" 
+              :style="{ backgroundImage: `url(${pickedfile})` }"
+            >
+                <!-- empty dev -->
             </div>
 
             <div v-else >
@@ -15,8 +16,9 @@
               <h4>File selected</h4>
                <p>Please upload to local json database</p>
             </div>
+
           </div>
-          <div v-else class="preview_content">
+          <div v-if="!pickedfile" class="preview_content">
             <img src="../static/img/cloud-arrow-up.svg" height="100px" width="100px" alt="">
             <h4>No file selected</h4>
           </div>
@@ -24,25 +26,14 @@
 
        <div class="btn_section">
 
-         <input ref="fileInput" type="file" @change="pickFile" class="fileInput">
-
-         <button
-         @click="selectFile()"
-         class="btn btn-primary block"
-         v-if="notselected"
-         >
-         Choose a file
-         </button>
-
-         
+         <input type="file" @change="onPicked" class="fileInput">
 
         <button
-         @click="uploadFile()"
-         class="btn btn-primary block"
-         v-if="!notselected"
-         >
-         Upload file
-         </button>
+          @click.prevent="getUploadedFile()"
+          class="btn btn-primary block"
+          >
+            Upload file
+        </button>
          
        </div>
      </div>
@@ -50,59 +41,47 @@
 
 <script>
 import {axios} from "axios";
-// import {$refs} from "vue";
-
 
 export default {
   name: 'Home',
 
   data(){
     return{
-      // regExp : `/[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/`,
-      notselected : false,
-      imgSrc: '',
       files:[],
       file: '',
-      validImage : ""
+      validImage : "",
+      pickedfile:"",
+      type: ""
     }
   },
 
   methods:{
 
-    pickFile(event){
+      onPicked(e){
+          const files = e.target.files || e.dataTransfer.files;
+          if (!files.length)
+              return;
+          this.createImage(files[0]);
+      },
+      createImage(file) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+              this.pickedfile =  e.target.result;
+          };
+          reader.readAsDataURL(file);
+      },
 
-      let imageTypes = ["image/jpeg", "image/jpg", "image/png"]; 
-
-      this.imgSrc = event.target.files[0];
-      const imagetype = this.imgSrc.type
-
-      if(imageTypes.includes(imagetype)){
-        this.validImage = true
-      }else{
-        this.validImage = false
-      }
-      console.log(this.imgSrc)
-    },
 
     uploadFile(){
-      let result;
-
-      if(this.validImage){
-        result = {
-          "name": this.imgSrc.name,
-          "type": this.imgSrc.type
-        }
-      }else{
-        result = {
-          "name": this.imgSrc.name,
-        }
+      let result = {
+        "name": "Image",
+        "src": this.pickedfile
       }
-
       try{
         const res = axios.post(" http://localhost:3000/posts", result )
         console.log(res)
       }catch(e){
-        console.log(e)
+        console.log("Error from posting to local db",e)
       }
 
     },
@@ -164,6 +143,9 @@ a {
   height: 300px;
   width: 350px;
   background: #fff;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
