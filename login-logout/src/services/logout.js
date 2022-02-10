@@ -1,10 +1,11 @@
 import ApiService from './api'
+// import axios from 'axios'
 
 const LogoutService = {
   logoutUser: async function (data) {
     const requestData = {
       method: 'POST',
-      url: 'api/order/create/',
+      url: 'https://simplor.herokuapp.com/api/user/logout',
       data: data
     }
 

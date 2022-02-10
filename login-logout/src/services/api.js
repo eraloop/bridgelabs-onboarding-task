@@ -4,9 +4,7 @@ import axios from 'axios'
 const ApiService = {
   setHeader () {
     // axios.defaults.headers.common['Authorization'] = `Bearer ${TokenService.getToken()}`
-    axios.defaults.headers.common['Content-Type'] = 'application/json'
-    // axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
-    // axios.defaults.headers.common['Access-Control-Allow-Headers'] = '*'
+    axios.defaults.headers.common['Content-Type'] = 'multipart/form-data'
   },
   customRequest (data) {
     return axios(data)
