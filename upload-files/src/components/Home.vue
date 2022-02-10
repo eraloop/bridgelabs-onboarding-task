@@ -77,8 +77,12 @@ export default {
         "name": "Image",
         "src": this.pickedfile
       }
+      const payload={
+          data: result,
+          Headers
+      }
       try{
-        const res = axios.post(" http://localhost:3000/posts", result )
+        const res = axios.post(" http://localhost:3000/posts", payload)
         console.log(res)
       }catch(e){
         console.log("Error from posting to local db",e)
