@@ -1,4 +1,5 @@
 import ApiService from './api'
+import axios from 'axios'
 
 const RegisterService = {
     
@@ -10,6 +11,7 @@ const RegisterService = {
     }
 
     try {
+      axios.defaults.headers.common['Content-Type'] = 'multipart/form-data'
       // ApiService.setHeader()
       const response = await ApiService.customRequest(requestData)
       return response.data

@@ -13,7 +13,7 @@
 
         <form action="" >
 
-            <div class="name container justify-content-between  m-auto p-auto">
+            <div v-if="!login"  class="name container justify-content-between  m-auto p-auto">
               <div class="row">
                 <div class="firstname col-lg-6 d-flex-column justify-content-center">
                     <label for="firstname">First Name</label>
@@ -26,17 +26,17 @@
               </div>
             </div>
 
-            <div v-if="login" class="email column d-flex-column justify-content-center m-auto p-auto">
+            <div class="email column d-flex-column justify-content-center m-auto p-auto">
                 <label for="email">Email</label>
                 <input  v-model="FormData.email"  class="input-box shadow-lg bg-white rounded" type="email" name="email" >
             </div>
 
-            <div class="phone column d-flex-column justify-content-center m-auto p-auto">
+            <div v-if="!login" class="phone column d-flex-column justify-content-center m-auto p-auto">
                 <label for="phone">Phone</label>
                 <input  v-model="FormData.phone" class="input-box shadow-lg bg-white rounded" type="phone" name="phone" >
             </div>
             
-            <div class="photo column d-flex-column  justify-content-center m-auto p-auto">
+            <div v-if="!login" class="photo column d-flex-column  justify-content-center m-auto p-auto">
                 <label for="photo">Profile Photo</label>
                 <input @change="onPicked" class="" type="file" name="photo" >
             </div>
@@ -47,7 +47,7 @@
                         <label for="password">Password</label>
                         <input v-model="FormData.password" class="input-box shadow-lg bg-white rounded" type="text" name="password" >
                     </div>
-                    <div class="col-lg-6 d-flex-column justify-content-center m-auto p-auto">
+                    <div  class="col-lg-6 d-flex-column justify-content-center m-auto p-auto">
                             <label for="confirm-password">Confirm Password</label>
                             <input  v-model="FormData.cnfpassword" class="input-box shadow-lg bg-white rounded" type="text" name="confirm-password" >
                     </div>
@@ -55,7 +55,7 @@
             </div>
 
            <div class="button_section buttons">
-                <div v-if="login" class=" d-inline-block justify-content-center m-auto p-auto">
+                <div v-if="!login" class=" d-inline-block justify-content-center m-auto p-auto">
                     <button class="btn " @click.prevent="RegisterUser" >Register</button>
                 </div>
                 <div v-else class="d-inline-block justify-content-center m-auto p-auto">
@@ -104,10 +104,7 @@
                 this.createImage(files[0]);
            },
             createImage(file) {
-                console.log("called")
-                // let image = new Image();
                 const reader = new FileReader();
-                // let vm = this
                 reader.onload = (e) => {
                     this.image = e.target.result;
                 };
@@ -127,19 +124,20 @@
             },
 
             RegisterUser(){
-               let registerData = {
-                    email : this.FormData.email,
-                    fname: this.FormData.fname,
-                    lname: this.FormData.lname,
-                    phone: this.FormData.phone,
-                    password: this.FormData.password,
-                    avatar: this.image
+                let registerData =  {
+                    "email" : this.FormData.email,
+                    "first_name" : this.FormData.fname,
+                    "last_name": this.FormData.lname,
+                    "phone": this.FormData.phone,
+                    "password": this.FormData.password,
+                    "avatar": `${this.image}`
                 }
+                console.log(registerData)
                 // this dispatches an action to the vue store to run the register function with the payload
                 this.$store.dispatch("register", registerData)
             },
 
-             LoginUser(){
+            LoginUser(){
                let loginData = {
                     email : this.FormData.email,
                     password: this.FormData.password,
@@ -188,6 +186,7 @@
         border-radius: 10px;
         color: #fff;
         background: #2c3e50;
+        outline: none;
     }
     .navigation{
         width: 400px;
