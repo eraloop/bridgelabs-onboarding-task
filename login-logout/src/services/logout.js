@@ -14,6 +14,7 @@ const LogoutService = {
       // ApiService.setHeader()
       const response = await ApiService.customRequest(requestData)
       TokenService.removeToken()
+      console.log(response)
       return response.data
     } catch (error) {
       return error
