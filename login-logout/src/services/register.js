@@ -1,5 +1,6 @@
 import ApiService from './api'
 import axios from 'axios'
+import TokenService from './storage'
 
 const RegisterService = {
     
@@ -14,6 +15,7 @@ const RegisterService = {
       axios.defaults.headers.common['Content-Type'] = 'multipart/form-data'
       // ApiService.setHeader()
       const response = await ApiService.customRequest(requestData)
+      TokenService.saveToken(response.data.token)
       return response.data
     } catch (error) {
       console.log("console from register service", error)

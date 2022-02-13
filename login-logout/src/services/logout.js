@@ -1,4 +1,5 @@
 import ApiService from './api'
+import TokenService from './storage'
 // import axios from 'axios'
 
 const LogoutService = {
@@ -12,6 +13,8 @@ const LogoutService = {
     try {
       // ApiService.setHeader()
       const response = await ApiService.customRequest(requestData)
+      TokenService.removeToken()
+      console.log(response)
       return response.data
     } catch (error) {
       return error
