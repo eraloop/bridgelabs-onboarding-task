@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import  RegisterService  from '../services/register'
 import  LoginService  from '../services/login'
-import  LogoutService  from '../services/logout'
+// import  LogoutService  from '../services/logout'
 import TokenService from '../services/storage'
 import router from '../router'
 
@@ -41,8 +41,16 @@ export default new Vuex.Store({
       state.userData.isAdmin = payload.isAdmin
       state.userData.name = payload.name
     },
+
     registrationSuccess(state, payload){
       state.token = payload.token
+      state.accessToken = payload.access
+      state.refreshToken = payload.refresh
+      state.userData.fname = payload.first_name
+      state.userData.lname = payload.last_name
+      state.userData.email = payload.email
+      state.userData.isAdmin = payload.isAdmin
+      state.userData.name = payload.name
     }
   },
 
@@ -52,11 +60,13 @@ export default new Vuex.Store({
     },
     get_user_data(state){
       return state.userData
+    },
+    get_token(state){
+      return state.token
     }
   },
 
   actions: {
-
     async login({ commit }, payload) {
       try {
         const token = await LoginService.loginUser(payload)
@@ -83,9 +93,9 @@ export default new Vuex.Store({
       }
     },
     
-
-    logout() {
-      LogoutService.logout()
+    async logout() {
+      console.log(this.refreshToken)
+      // await LogoutService.logoutUser(refreshToken)
     },
   },
 })

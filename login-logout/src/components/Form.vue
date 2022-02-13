@@ -139,12 +139,12 @@
 
             LoginUser(){
                let loginData = {
-                    email : this.FormData.email,
-                    password: this.FormData.password,
+                    "email" : this.FormData.email,
+                    "password": this.FormData.password,
                 }
-
+                console.log(loginData)
                 // this dispatches an action to the vue store to run the login function with the payload
-                this.$store.dispatch("login", loginData)
+                // this.$store.dispatch("login", loginData)
             }
            
        },
