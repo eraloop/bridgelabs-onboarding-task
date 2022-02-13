@@ -29,7 +29,7 @@
          <input type="file" @change="onPicked" class="fileInput">
 
         <button
-          @click.prevent="getUploadedFile()"
+          @click.prevent="uploadFile()"
           class="btn btn-primary block"
           >
             Upload file
@@ -71,18 +71,14 @@ export default {
           reader.readAsDataURL(file);
       },
 
-
     uploadFile(){
       let result = {
         "name": "Image",
         "src": this.pickedfile
       }
-      const payload={
-          data: result,
-          Headers
-      }
       try{
-        const res = axios.post(" http://localhost:3000/posts", payload)
+        // axios.defaults.headers.common['Content-Type'] = 'multipart/form-data'
+        const res = axios.post(" http://localhost:3000/posts", result)
         console.log(res)
       }catch(e){
         console.log("Error from posting to local db",e)
