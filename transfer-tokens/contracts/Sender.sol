@@ -1,11 +1,7 @@
-// SPDX-License-Identifier: MIT
-pragma solidity >=0.4.22 <0.9.0;
+pragma solidity >=0.5.16;
 
-contract sender {
-  constructor() payable public {
-  }
-
-
+contract Sender {
+    constructor  () payable public {}
 
     // function sendEther(address payable recipient) external{
     //     recipient.transfer(1 ether);
@@ -24,8 +20,8 @@ contract sender {
         require(sent, "sent failed");
     }
 
-    function sendViaCall(address payable _to) external payable{
-        {bool success }_to.call{value: 123}("");
-        require(success, "call fail");
-    }
+    // function sendViaCall(address payable _to) external payable{
+    //     {bool success,} = _to.call{value: 123}("");
+    //     require(success, "call fail");
+    // }
 }
