@@ -4,12 +4,12 @@ import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
-    path: "/" ,
-    component: Home
-  }
-]
+// const routes = [
+//   {
+//     path: "/" ,
+//     component: Home
+//   }
+// ]
 const routes = {
   "/": Home
 }
