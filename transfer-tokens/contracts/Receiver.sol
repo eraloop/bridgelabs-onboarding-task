@@ -8,8 +8,8 @@ contract Receiver {
     owner = msg.sender;
   }
     // event.log(uint amount, uint gas);
-    // recieve() external payable {
-    //     emit log(msg.value, gassleft());
+    // receive() external payable {
+    //     emit log(msg.value, getBalance());
     // }
 
     function getBalance() public view returns(uint256){

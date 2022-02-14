@@ -65,11 +65,11 @@
 	},
 	"sources": {
 		"Desktop/BridgeLabs/bridgelabs-onboarding-task/transfer-tokens/contracts/Receiver.sol": {
-			"keccak256": "0x2cb957925c7579b275a93d31f47a1fe0becbd7361bd04444589804db17399104",
+			"keccak256": "0xc9cfcf2542eee225f8095e8e3a7a8942d5db674af0593918c24184a36c41ee8b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://1df80c49ecafb5059f5df2b99ab9f7a0d2a41fd09dba153c0a3d766909635eb7",
-				"dweb:/ipfs/QmNeAep3XqbtaBrvrCkp7wL2icbbKNPAeMRgNFAVyYgnyh"
+				"bzz-raw://9737952bb7f1f32cf0d224752ad2ec3f85b1a1a7b6875b44325c08154799572e",
+				"dweb:/ipfs/QmfSoivhajvZ2gHSXnLUX9AZj3uRmyVJmEoXjhnvqp1GtE"
 			]
 		}
 	},

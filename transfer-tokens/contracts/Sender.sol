@@ -9,7 +9,7 @@ contract Sender {
     }
 
     function sendEther(address payable recipient) external{
-        recipient.transfer(1 ether);
+        recipient.transfer(10 ether);
     } 
 
     // function checkSenderBalance(){
@@ -17,11 +17,11 @@ contract Sender {
     // }
 
     function sendViaTransafer(address payable _to) external payable{
-        _to.transfer(123);
+        _to.transfer(10 ether);
     }
 
     function sendViaSend(address payable _to) external payable{
-        bool sent  = _to.send(123);
+        bool sent  = _to.send(10 ether);
         require(sent, "sent failed");
     }
 
