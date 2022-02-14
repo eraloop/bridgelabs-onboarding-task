@@ -1,0 +1,77 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "getAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Desktop/BridgeLabs/bridgelabs-onboarding-task/transfer-tokens/contracts/Receiver.sol": "Receiver"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Desktop/BridgeLabs/bridgelabs-onboarding-task/transfer-tokens/contracts/Receiver.sol": {
+			"keccak256": "0x2cb957925c7579b275a93d31f47a1fe0becbd7361bd04444589804db17399104",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1df80c49ecafb5059f5df2b99ab9f7a0d2a41fd09dba153c0a3d766909635eb7",
+				"dweb:/ipfs/QmNeAep3XqbtaBrvrCkp7wL2icbbKNPAeMRgNFAVyYgnyh"
+			]
+		}
+	},
+	"version": 1
+}

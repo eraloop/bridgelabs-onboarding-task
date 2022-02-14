@@ -2,9 +2,11 @@
 
 contract Receiver {
 
-  address private owner = msg.sender;
+  address private owner;
 
-  constructor () public {}
+  constructor () public {
+    owner = msg.sender;
+  }
     // event.log(uint amount, uint gas);
     // recieve() external payable {
     //     emit log(msg.value, gassleft());
@@ -12,5 +14,9 @@ contract Receiver {
 
     function getBalance() public view returns(uint256){
       return owner.balance;
+    }
+    
+    function getAddress() public view returns(address){
+      return owner;
     }
 }

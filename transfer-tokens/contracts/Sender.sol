@@ -1,11 +1,16 @@
 pragma solidity >=0.5.16;
 
 contract Sender {
-    constructor  () payable public {}
 
-    // function sendEther(address payable recipient) external{
-    //     recipient.transfer(1 ether);
-    // } 
+    address private owner;
+
+    constructor  () payable public {
+        owner = msg.sender;
+    }
+
+    function sendEther(address payable recipient) external{
+        recipient.transfer(1 ether);
+    } 
 
     // function checkSenderBalance(){
 
@@ -18,6 +23,14 @@ contract Sender {
     function sendViaSend(address payable _to) external payable{
         bool sent  = _to.send(123);
         require(sent, "sent failed");
+    }
+
+    function getBalance() public view returns(uint256){
+      return owner.balance;
+    }
+
+    function getAddress() public view returns(address){
+      return owner;
     }
 
     // function sendViaCall(address payable _to) external payable{
