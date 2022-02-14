@@ -1,13 +1,16 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.5.16;
 
 contract Receiver {
-  constructor () public {
-  }
 
-    event.log(uint amount, uint gas);
+  address private owner = msg.sender;
 
-    recieve() external payable {
-        emit log(msg.value, gassleft());
+  constructor () public {}
+    // event.log(uint amount, uint gas);
+    // recieve() external payable {
+    //     emit log(msg.value, gassleft());
+    // }
+
+    function getBalance() public view returns(uint256){
+      return owner.balance;
     }
 }
