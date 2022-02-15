@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h4>individual project structure</h4>
+       
     </div>
 </template>
 <script>
@@ -29,5 +29,8 @@
         padding: 0;
         margin: 0;
         box-sizing:border-box;
+    }
+    .container{
+        max-width: 60%;
     }
 </style>

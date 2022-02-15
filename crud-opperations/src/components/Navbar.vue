@@ -1,16 +1,27 @@
 <template>
-    <div class=" navabar container justify-content-between align-items-center p-3 ">
-        <h1>
-            logo
-        </h1>
-        <div>
-            <button>
-                add product
+    <div class=" navbar container align-items-center p-4">
+        <h3>logo</h3>
+
+       <div class="d-flex justify-content-between align-items-center ">
+            <button 
+            class="btn btn-secondary mr-4"
+             @click.prevent="NavProd"
+            >  
+                Products
             </button>
-        </div>
+            <button 
+            class="btn btn-primary"
+            @click.prevent="NavAddProd"
+            >
+                Add Products
+            </button>
+       </div>
+
     </div>
 </template>
 <script>
+import router from "../router"
+
    export default{
        components:{
             
@@ -24,6 +35,13 @@
            
         },
        methods:{
+           NavAddProd(){
+               router.push("./addproducts")
+           },
+
+            NavProd(){
+               router.push("./productlist")
+           }
            
        },
        mounted: function(){
@@ -37,8 +55,11 @@
         margin: 0;
         box-sizing:border-box;
     }
-    .navabar{
+    .navbar{
         color: #2c3e50;
-        border: 0 0 5px ;
+        border-bottom: 1px  solid #2c3e50;
+        /* border-radius: 10px; */
     }
+
+
 </style>
