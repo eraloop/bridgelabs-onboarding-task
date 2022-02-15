@@ -3,10 +3,10 @@
        <div class="content p-4 ">
            <div class="google-form text-center justify-content-center align-items-center">
                 <h2 class="p-2"> Welcome to our OAuth Login Screen </h2>
-                <div class="g-signin2 m-2 text-center" data-onsuccess="onSignIn"></div>
+                <div class="g-signin2 m-2" data-onsuccess="onSignIn"></div>
            </div>
            <div class="custom">
-               <p>Don't have a google account? </p><a target="blank" href="www.google.com">Create One</a>
+               <p>Don't have a google account? </p> <a target="blank" href="www.google.com"> Create One</a>
            </div>
        </div>
     </div>
@@ -29,10 +29,6 @@
                 console.log(googleUser)
                 this.profile = googleUser.getBasicProfile();
                 console.log(this.profile)
-                // console.log('ID: ' + this.profile.getId()); // Do not send to your backend! Use an ID token instead.
-                // console.log('Name: ' + this.profile.getName());
-                // console.log('Image URL: ' + this.profile.getImageUrl());
-                // console.log('Email: ' + this.profile.getEmail()); // This is null if the 'email' scope is not present.
             },
 
        },
@@ -63,15 +59,14 @@
     }
     
     .content{
-        /* border: 1px solid black ; */
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         width: 40%;
         height: 40%;
         padding: 20px;
         border-radius: 10px ;
         outline: none;
-
     }
+
     .google-form{
         padding: 10px 0 20px;
         margin-bottom: 30px;
