@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import {axios} from "axios";
+import axios from "axios";
 
 export default {
   name: 'Home',
@@ -73,11 +73,11 @@ export default {
 
     uploadFile(){
       let result = {
-        "name": "Image",
-        "src": this.pickedfile
+        name: "Image",
+        src: this.pickedfile
       }
       try{
-        // axios.defaults.headers.common['Content-Type'] = 'multipart/form-data'
+        // axios.default.headers.common['Content-Type'] = 'multipart/form-data'
         const res = axios.post(" http://localhost:3000/posts", result)
         console.log(res)
       }catch(e){
