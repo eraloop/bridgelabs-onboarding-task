@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
     <div class="container  d-flex justify-content-between align-items-center p-2 m-2">
         <div v-for="i in 3" :key="i" class="">
@@ -6,11 +7,12 @@
     </div>
 </template>
 <script>
-import Product from './Product.vue'
+import Product from './ProductCard.vue'
    export default{
        components:{
             Product
        },
+       
        data(){
            return{
                

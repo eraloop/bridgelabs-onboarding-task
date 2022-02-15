@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
     <div class=" navbar container align-items-center p-4">
         <h3>logo</h3>

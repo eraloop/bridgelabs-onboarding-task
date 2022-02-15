@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
     <div class="container">
         <Navbar/>
@@ -24,7 +25,7 @@ import ProductDisplay from './ProductDisplay.vue'
            
        },
        mounted: function(){
-            
+            this.$store.dispatch("fetchProducts")
        }
     }
 </script>

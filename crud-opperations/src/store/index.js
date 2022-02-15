@@ -5,40 +5,31 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+
+    products: {}
   },
   mutations: {
+    setProducts: (state, payload)=> {
+      state.products = payload
+    }
+  },
+
+  getters: {
+    getProducts: (state)=>{
+      return state.products
+    }
   },
   actions: {
 
-    // async login({ commit }, payload) {
-    //   try {
-    //     const token = await LoginService.loginUser(payload)
-    //     commit("loginSuccess", token)
-    //     console.log(token)
-    //     router.push('/welcome')
-    //     return true
-    //   } catch (e) {
-    //     console.log(e)
-    //     return false
-    //   }
-    // },
-
-    // async register({commit},user) {
-    //   try {
-    //     const token = await RegisterService.registerUser(user)
-    //     commit('registrationSuccess', token)
-    //     console.log(token)
-    //     router.push('/welcome')
-    //     return true
-    //   } catch (e) {
-    //     console.log("console from register store", e)
-    //     return false
-    //   }
-    // },
+    async fetchProducts({commit}) {
+      try {
+        const response  = await FetchService.getProduct()
+        commit('setProducts', response)
+        return true
+      } catch (e) {
+        return e
+      }
+    },
     
-    // async logout() {
-    //   console.log(this.refreshToken)
-    //   // await LogoutService.logoutUser(refreshToken)
-    // },
   },
 })

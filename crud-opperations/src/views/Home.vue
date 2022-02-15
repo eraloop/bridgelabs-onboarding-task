@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
   <div class="home d-flex justify-content-center align-items-center m-auto" >
     <Index/>

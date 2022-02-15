@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
     <div class="container">
         <h3 class="text-center">Products</h3>
