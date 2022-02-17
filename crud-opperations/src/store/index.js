@@ -13,6 +13,7 @@ export default new Vuex.Store({
       state.products = payload
     }
   },
+<<<<<<< HEAD
 
   getters: {
     getProducts: (state)=>{
@@ -31,5 +32,10 @@ export default new Vuex.Store({
       }
     },
     
+=======
+  actions: {
+>>>>>>> parent of 8593f09e... added api login handle
   },
+  modules: {
+  }
 })
