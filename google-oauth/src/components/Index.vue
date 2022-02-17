@@ -6,7 +6,7 @@
                 <div class="g-signin2 m-2" data-onsuccess="onSignIn"></div>
            </div>
            <div class="custom">
-               <p>Don't have a google account? </p> <a target="blank" href="www.google.com"> Create One</a>
+               <p>Don't have a google account? </p> <a target="_blank" href="https://accounts.google.com/signin"> Create One</a>
            </div>
        </div>
     </div>
