@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import  RegisterService  from '../services/register'
 import  LoginService  from '../services/login'
-// import  LogoutService  from '../services/logout'
+import  LogoutService  from '../services/logout'
 import TokenService from '../services/storage'
 import router from '../router'
 
@@ -72,7 +72,9 @@ export default new Vuex.Store({
         const token = await LoginService.loginUser(payload)
         commit("loginSuccess", token)
         console.log(token)
-        router.push('/welcome')
+        if(token.refresh != "" ){
+          router.push('/welcome')
+       }
         return true
       } catch (e) {
         console.log(e)
@@ -85,7 +87,9 @@ export default new Vuex.Store({
         const token = await RegisterService.registerUser(user)
         commit('registrationSuccess', token)
         console.log(token)
-        router.push('/welcome')
+       if(token.refresh != "" ){
+          router.push('/welcome')
+       }
         return true
       } catch (e) {
         console.log("console from register store", e)
@@ -94,8 +98,13 @@ export default new Vuex.Store({
     },
     
     async logout() {
-      console.log(this.refreshToken)
-      // await LogoutService.logoutUser(refreshToken)
+      try{
+        const res = await LogoutService.logoutUser()
+        return res
+      }catch(e){
+        return e
+      }
+
     },
   },
 })

@@ -12,11 +12,6 @@
   color: #2c3e50;
 }
 
-/* a{
-  font-weight: bold;
-  color: #2c3e50;
-} */
-
 a.router-link-exact-active , li.router-link-exact-active{
   color: #42b983;
 }

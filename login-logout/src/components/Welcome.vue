@@ -1,12 +1,10 @@
 <template>
      <div class="container d-flex-column justify-content-center align-items-center m-auto p-5">
-        <div class="row">
-            
-            <div class="col-lg-8">
+            <div class="content">
                 <h4>Welcome Mr {{userData.name}}</h4>
                 <p>We are very happy you choose our servicess.</p>
 
-                <section>
+                <section class="basic-info">
                     <h5>Please verify some of these information: </h5>
                     <p>
                         <span>Email: </span><span>{{userData.email}}</span>
@@ -16,7 +14,6 @@
                     </p>
                 </section>
             </div>
-        </div>
     </div>
 </template>
 <script>
@@ -47,5 +44,16 @@
         padding: 0;
         margin: 0;
         box-sizing:border-box;
+    }
+    .content{
+        height: 40%;
+        width: 90%;
+        padding: 4em;
+        border-radius: 10px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        
+    }
+    .basic-info{
+        padding: 10px 0;
     }
 </style>

@@ -1,28 +1,19 @@
 <template>
     <div class="container">
         <div class="d-flex justify-content-between align-items-center p-3 bg-primary p-3 d-block  w-100 text-white">
-            <h1>
-                logo
-            </h1>
-            <ul class="d-flex justify-content-around align-items-center">
-                <li>
-                    link1
-                </li>
-                 <li>
-                    link1
-                </li>
-                 <li>
-                    link1
-                </li>
-            </ul>
+            <h3>
+                LoggedIn
+            </h3>
+
             <ul class="d-flex justify-content-around align-items-center ">
                <div  v-if="isLoggedIn" class="d-flex justify-content-between align-item-center ">
-                    <li >
+                    <li  class="pr-5 mr-3">
                         {{userData.name || "test user"}} 
                     </li>
                     <button
-                        @click="LogoutUser"
+                        @click.prevent="LogoutUser"
                         v-if="isLoggedIn"
+                        class="btn btn-dark"
                         >
                         Logout
                     </button>
@@ -32,15 +23,16 @@
 
             </ul>
         </div>
-        <welcome/>
+
+        <Welcome/>
     </div>
 </template>
 <script>
-import welcome from "../components/Welcome.vue"
-// import router from "../router"
+import Welcome from "../components/Welcome.vue"
+import router from "../router"
    export default{
        components:{
-           welcome 
+           Welcome 
        },
        data(){
            return{
@@ -58,7 +50,7 @@ import welcome from "../components/Welcome.vue"
        methods:{
            LogoutUser(){
                this.$store.dispatch("logout")
-            //    router.push("/welcome")
+               router.push("/")
            },
        },
        mounted: function(){
@@ -80,5 +72,9 @@ import welcome from "../components/Welcome.vue"
     }
     a{
         color: #fff
+    }
+    .container{
+        height: 100vh;
+        width: 100%;
     }
 </style>

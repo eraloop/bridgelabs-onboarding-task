@@ -1,24 +1,4 @@
-# login-logout
+# Login Logout
+This applications is is to illuatrated login, register , and logout functionality as seen on most websites.
 
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Most of the info instructions on how to setup this application is found in the README found in the Frontend/README.md
