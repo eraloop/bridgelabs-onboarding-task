@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+export const store =  new Vuex.Store({
   state: {
 
     products: {}
@@ -13,7 +13,6 @@ export default new Vuex.Store({
       state.products = payload
     }
   },
-<<<<<<< HEAD
 
   getters: {
     getProducts: (state)=>{
@@ -32,9 +31,6 @@ export default new Vuex.Store({
       }
     },
     
-=======
-  actions: {
->>>>>>> parent of 8593f09e... added api login handle
   },
   modules: {
   }
